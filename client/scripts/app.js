@@ -48,13 +48,28 @@ app.fetch = function(url) {
   });
 };
 
-app.clearMessagess = function() {
-  
+app.clearMessages = function() {
+  // Empty content from Chats
+  $('#chats').empty();
 };
 
+app.renderMessage = function(message) {
+  // Adds Message to Chats
+  $('#chats').append('<p>message</p>');
+};
+
+app.renderRoom = function(room) {
+  //
+  $('#roomSelect').append('<p>room</p>');
+};
 
 // URL: http://parse.la.hackreactor.com/chatterbox/classes/messages
 
 
 // Setup a way to refresh the displayed messages (either automatically or with a button)
 // Allow users to select a user name for themself and to be able to send messages
+
+
+
+
+
