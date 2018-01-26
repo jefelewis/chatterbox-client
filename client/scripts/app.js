@@ -31,10 +31,10 @@ app.send = function(message) {
 };
 
 
-app.fetch = function(url, message) {
+app.fetch = function(message) {
 
   var results = {
-    order: '-createdAt'
+    order: 'createdAt'
   };
 
 
@@ -63,14 +63,8 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p>' + message + '</p>');
-// console.log('hello')
+  $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
 };
-//   //
-//   $(document).ready(function(message) {
-//     $('#submit').on('click', function() {})   
-//   }
-// }
 
 
 app.renderRoom = function(room) {
@@ -88,11 +82,11 @@ app.handleUsernameClick = function() {
 
 app.handleSubmit = function() {
 
-  $(document).ready(function() {
-    $('#submit').on('click', function() {
-      renderMessage();
-    });
+  // $(document).ready(function() {
+  $('#submit').on('click', function() {
+    app.send();
   });
+  // });
 };
 
 // URL: http://parse.la.hackreactor.com/chatterbox/classes/messages
