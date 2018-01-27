@@ -4,6 +4,9 @@ var app = {};
 // Server URL
 app.server = 'http://parse.la.hackreactor.com/chatterbox/classes/messages';
 
+// Friends List
+app.friends = {};
+app.friends1 = [];
 
 // METHODS
 app.init = function() {
@@ -37,14 +40,16 @@ app.init = function() {
       console.log('Refresh Button is working');
     });
 
-
+    // $('.username').on('click', function(event) {
+    //   app.friends1.push($(this).text());
+    //   console.log(app.friends1);
+    // });
   });
 };
 
 
 // Message is a object var message = {username: 'shawndrost', text: 'trololo', roomname: '4chan'};
 app.send = function(message) {
-  console.log('hi');
   $.ajax({
   // This is the url you should use to communicate with the parse API server. (See Above URL)
     url: app.server,
@@ -114,7 +119,7 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p>' + '<b>' + _.escape(message.username) + '</b>' + ': ' + _.escape(message.text) + '</p>');
+  $('#chats').append('<p class ="username">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + '</b>' + ': ' + _.escape(message.text) + '</p>');
 };
 
 
@@ -125,8 +130,10 @@ app.renderRoom = function(room) {
 
 app.handleUsernameClick = function() {
   // 
-  $('#username').click(function() {
-    
+
+  $('.username').on('click', function() {
+    app.friends1.push($(this));
+    console.log(app.friends1);
   });
   
 };
