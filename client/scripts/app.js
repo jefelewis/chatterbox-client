@@ -4,39 +4,37 @@ var app = {};
 // Server URL
 app.server = 'http://parse.la.hackreactor.com/chatterbox/classes/messages';
 
-// app.validateString = function(string) {
-//   var validity = true;
-
-//   if ( string === '' ) { 
-//     validity = false; 
-//   }
-
-//   if ( string.match( /[ |<|,|>|\.|\?|\/|:|;|"|'|{|\[|}|\]|\||\\|~|`|!|@|#|\$|%|\^|&|\*|\(|\)|_|\-|\+|=]+/ ) !== null ) {
-//     validity = false;
-//   }
-
-//   return validity;
-// };
 
 // METHODS
 app.init = function() {
   $(document).ready(function() {
 
-    // app.fetch();
-
-    var message = {
-      username: 'testuser',
-      text: $('#message').val(),
-      roomname: 'lobby'
-    };
-
+    // Submit Button
     $('#submit').on('click', function() {
-      app.send(message);
+      app.send({
+        username: $('#username').val(),
+        text: $('#message').val(),
+        roomname: 'lobby'
+    
+      });
+      // Render Room after Submit Button is clicked
+      app.fetch();
+      console.log('Submit Button is working');
     });
 
+    // Show/Hide Feed Button
     $('#clear').on('click', function() {
-      app.clearMessages();
+      $('#chats').toggle();
+      console.log('Show/Hide Button is working');
     });
+
+    // Refresh Feed Button
+    $('#refresh').on('click', function() {
+      app.fetch();
+      console.log('Refresh Button is working');
+    });
+
+
   });
 };
 
@@ -54,7 +52,7 @@ app.send = function(message) {
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Message sent');
-      
+      app.renderMessage(message);
       
     },
     error: function (data) {
@@ -80,7 +78,7 @@ app.fetch = function(message) {
     data: results,
     contentType: 'application/json',
     success: function (data) {
-      console.log('chatterbox: Message sent');
+      console.log('chatterbox: Messages received');
       // WHY???
       // need to filter out the trolls with something...
 
@@ -94,14 +92,14 @@ app.fetch = function(message) {
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
-      console.error('chatterbox: Failed to send message', data);
+      console.error('chatterbox: Failed to retreive messages', data);
     }
   });
 };
 
 app.clearMessages = function() {
   // Empty content from Chat Div
-  $('#chats').empty();
+  $('#chats').hide();
 };
 
 app.renderMessage = function(message) {

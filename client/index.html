@@ -27,27 +27,27 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
-      <div>
+      <div id="room">
         <p>Room:</p>
         <!-- Rooms List -->
         <select id = 'roomSelect'>
-          <option value="Room #1">Room #1</option>
-          <option value="Room #2">Room #2</option>
-          <option value="Room #3">Room #3</option>
-          <option value="Room #4">Room #4</option>
+          <option value="Lobby">Lobby</option>
+          <option value="Test">Test</option>
         </select>
   
       </div>
 
       <!-- Message Field -->
       <form>
-      <input type="text" placeholder id="message="Type Message Here">
+        <input type="text" placeholder="Username" id="username"/>
 
-      <button type="button" id="submit">Submit</button>
-      
-      <button type="button">Refresh Page</button>
+        <input type="text" placeholder="Enter Message" id="message"/>
 
-      <button type="button" id="clear">Clear Page</button>
+        <button type="button" id="submit">Submit</button>
+        
+        <button type="button" id="refresh">Refresh Feed</button>
+
+        <button type="button" id="clear">Show/Hide Feed</button>
       </form> 
 
 
