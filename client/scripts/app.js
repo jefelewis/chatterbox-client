@@ -21,7 +21,8 @@ app.server = 'http://parse.la.hackreactor.com/chatterbox/classes/messages';
 // METHODS
 app.init = function() {
   $(document).ready(function() {
-  // app.init = function() {
+
+    // app.fetch();
 
     var message = {
       username: 'testuser',
@@ -32,7 +33,10 @@ app.init = function() {
     $('#submit').on('click', function() {
       app.send(message);
     });
-  // };
+
+    $('#clear').on('click', function() {
+      app.clearMessages();
+    });
   });
 };
 
@@ -50,6 +54,8 @@ app.send = function(message) {
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Message sent');
+      
+      
     },
     error: function (data) {
     // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -100,7 +106,7 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  // $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
+  $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
 };
 
 
@@ -127,3 +133,4 @@ app.handleUsernameClick = function() {
 
 
 app.init();
+app.fetch();
