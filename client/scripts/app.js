@@ -6,7 +6,6 @@ app.server = 'http://parse.la.hackreactor.com/chatterbox/classes/messages';
 
 // Friends List
 app.friends = {};
-app.friends1 = [];
 
 // METHODS
 app.init = function() {
@@ -41,8 +40,7 @@ app.init = function() {
     });
 
     $('body').on('click', '.friends', function(username) {
-      app.friends1.push(username.target.textContent);
-      console.log(app.friends1);
+      app.friends[username.target.textContent] = true;
     });
   });
 };
@@ -119,7 +117,12 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p class ="friends">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + '</b>' + ': ' + _.escape(message.text) + '</p>');
+  //check if in friend list, if yes, bold text
+  if (app.friends[message.username]) {
+    $('#chats').append('<p class ="friends">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + ': ' + _.escape(message.text) + '</b>' + '</p>');
+  } else {
+    $('#chats').append('<p class ="friends">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + '</b>' + ': ' + _.escape(message.text) + '</p>');
+  }
 };
 
 
@@ -149,3 +152,4 @@ app.handleUsernameClick = function() {
 
 app.init();
 app.fetch();
+
