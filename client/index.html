@@ -28,36 +28,33 @@
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
       <div id="room">
-        <p>Room:</p>
+        <p><b>Room:</b></p>
         <!-- Rooms List -->
         <select id = 'roomSelect'>
           <option value="Lobby">Lobby</option>
           <option value="Test">Test</option>
         </select>
   
+        <!-- Message Field -->
+        <form>
+          <input type="text" placeholder="Username" id="username"/>
+
+          <input type="text" placeholder="Enter Message" id="message"/>
+
+          <button type="button" id="submit">Submit</button>
+          
+          <button type="button" id="refresh">Refresh Feed</button>
+
+          <button type="button" id="clear">Show/Hide Feed</button>
+        </form> 
+  
+      <!-- Friends List -->
+      <p><b>Friends List</b></p>
+
+      <div id="chats">
+  
       </div>
 
-      <!-- Message Field -->
-      <form>
-        <input type="text" placeholder="Username" id="username"/>
-
-        <input type="text" placeholder="Enter Message" id="message"/>
-
-        <button type="button" id="submit">Submit</button>
-        
-        <button type="button" id="refresh">Refresh Feed</button>
-
-        <button type="button" id="clear">Show/Hide Feed</button>
-      </form> 
-
-
-    
-
-    </div>
-
-    <div id="chats">
-  
-
-    </div>
+      </div>
   </body>
 </html>

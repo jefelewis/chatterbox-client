@@ -40,10 +40,10 @@ app.init = function() {
       console.log('Refresh Button is working');
     });
 
-    // $('.username').on('click', function(event) {
-    //   app.friends1.push($(this).text());
-    //   console.log(app.friends1);
-    // });
+    $('body').on('click', '.friends', function(username) {
+      app.friends1.push(username.target.textContent);
+      console.log(app.friends1);
+    });
   });
 };
 
@@ -119,7 +119,7 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p class ="username">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + '</b>' + ': ' + _.escape(message.text) + '</p>');
+  $('#chats').append('<p class ="friends">' + '<b>' + '<a href="#">' + _.escape(message.username) + '</a>' + '</b>' + ': ' + _.escape(message.text) + '</p>');
 };
 
 
@@ -131,16 +131,16 @@ app.renderRoom = function(room) {
 app.handleUsernameClick = function() {
   // 
 
-  $('.username').on('click', function() {
-    app.friends1.push($(this));
-    console.log(app.friends1);
-  });
+  // $('.username').on('click', function() {
+  //   app.friends1.push($(this));
+  //   console.log(app.friends1);
+  // });
   
 };
 
 
 
-// URL: http://parse.la.hackreactor.com/chatterbox/classes/messages
+// URL: http://parse.la.hackreeactor.com/chatterbox/classes/messages
 
 
 // Setup a way to refresh the displayed messages (either automatically or with a button)
