@@ -88,6 +88,13 @@ app.fetch = function(message) {
       //     app.renderMessage(element);
       //   }
       // });
+
+      //might filter out < signs
+      // data.results = data.results.filter(function(element){
+      //   if (!JSON.stringify(element).includes('<')) {
+      //     return element;
+      //   }
+      // });
       data.results.forEach(result => app.renderMessage(result));
     },
     error: function (data) {

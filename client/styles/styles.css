@@ -62,7 +62,7 @@ form input[type=text] {
 .chat {
     padding: 5px;
     margin-bottom: 5px;
-    background-color: #eee;
+    background-color: #eeeeee;
 }
 
 .chat .username {
@@ -88,4 +88,9 @@ form input[type=text] {
     background-color: #0090da;
 }
 
-
+div{
+    display: block;
+    font-family: "Helvetica Neue";
+    padding: 10px;
+    font-size: 15px;
+}
