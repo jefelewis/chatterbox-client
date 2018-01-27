@@ -4,20 +4,49 @@ var app = {};
 // Server URL
 app.server = 'http://parse.la.hackreactor.com/chatterbox/classes/messages';
 
+// app.validateString = function(string) {
+//   var validity = true;
+
+//   if ( string === '' ) { 
+//     validity = false; 
+//   }
+
+//   if ( string.match( /[ |<|,|>|\.|\?|\/|:|;|"|'|{|\[|}|\]|\||\\|~|`|!|@|#|\$|%|\^|&|\*|\(|\)|_|\-|\+|=]+/ ) !== null ) {
+//     validity = false;
+//   }
+
+//   return validity;
+// };
 
 // METHODS
 app.init = function() {
+  $(document).ready(function() {
+  // app.init = function() {
+
+    var message = {
+      username: 'testuser',
+      text: $('#message').val(),
+      roomname: 'lobby'
+    };
+
+    $('#submit').on('click', function() {
+      app.send(message);
+    });
+  // };
+  });
 };
 
 
+// Message is a object var message = {username: 'shawndrost', text: 'trololo', roomname: '4chan'};
 app.send = function(message) {
+  console.log('hi');
   $.ajax({
-  // This is the url you should use to communicate with the parse API server.
+  // This is the url you should use to communicate with the parse API server. (See Above URL)
     url: app.server,
     type: 'POST',
     // Message
     // Why do we not use JSON stringify?
-    data: message,
+    data: JSON.stringify(message),
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Message sent');
@@ -34,7 +63,7 @@ app.send = function(message) {
 app.fetch = function(message) {
 
   var results = {
-    order: 'createdAt'
+    order: '-createdAt'
   };
 
 
@@ -47,6 +76,14 @@ app.fetch = function(message) {
     success: function (data) {
       console.log('chatterbox: Message sent');
       // WHY???
+      // need to filter out the trolls with something...
+
+      // data.results.forEach(function(element) {
+      // console.log(app.validateString(JSON.stringify(element)));
+      //   if (app.validateString(JSON.stringify(element))) {
+      //     app.renderMessage(element);
+      //   }
+      // });
       data.results.forEach(result => app.renderMessage(result));
     },
     error: function (data) {
@@ -63,7 +100,7 @@ app.clearMessages = function() {
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
+  // $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
 };
 
 
@@ -80,14 +117,7 @@ app.handleUsernameClick = function() {
   
 };
 
-app.handleSubmit = function() {
 
-  // $(document).ready(function() {
-  $('#submit').on('click', function() {
-    app.send();
-  });
-  // });
-};
 
 // URL: http://parse.la.hackreactor.com/chatterbox/classes/messages
 
@@ -97,7 +127,3 @@ app.handleSubmit = function() {
 
 
 app.init();
-app.send();
-app.fetch();
-app.renderMessage('testing');
-app.handleSubmit();
