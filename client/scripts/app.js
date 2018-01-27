@@ -17,7 +17,9 @@ app.init = function() {
         roomname: 'lobby'
     
       });
-      // Render Room after Submit Button is clicked
+      // Clear existing Messages
+      app.clearMessages();
+      // Retrieve New Messages
       app.fetch();
       console.log('Submit Button is working');
     });
@@ -30,6 +32,7 @@ app.init = function() {
 
     // Refresh Feed Button
     $('#refresh').on('click', function() {
+      app.clearMessages();
       app.fetch();
       console.log('Refresh Button is working');
     });
@@ -106,12 +109,12 @@ app.fetch = function(message) {
 
 app.clearMessages = function() {
   // Empty content from Chat Div
-  $('#chats').hide();
+  $('#chats').empty();
 };
 
 app.renderMessage = function(message) {
   // Adds Message to Chat Div
-  $('#chats').append('<p>' + '<b>' + message.username + '</b>' + ': ' + message.text + '</p>');
+  $('#chats').append('<p>' + '<b>' + _.escape(message.username) + '</b>' + ': ' + _.escape(message.text) + '</p>');
 };
 
 
