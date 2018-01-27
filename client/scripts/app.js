@@ -152,4 +152,3 @@ app.handleUsernameClick = function() {
 
 app.init();
 app.fetch();
-
